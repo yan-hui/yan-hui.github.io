@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Orianna</title>
+    <link>http://yan-hui.github.io/</link>
+    <description>Recent content on Orianna</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zn-Hans</language>
+    <lastBuildDate>Wed, 10 Oct 2018 17:13:55 +0800</lastBuildDate>
+    
+	<atom:link href="http://yan-hui.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>http://yan-hui.github.io/about/</link>
+      <pubDate>Wed, 10 Oct 2018 17:13:55 +0800</pubDate>
+      
+      <guid>http://yan-hui.github.io/about/</guid>
+      <description>个人hugo网站</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>http://yan-hui.github.io/blog/2018-10/test/</link>
+      <pubDate>Wed, 10 Oct 2018 17:11:55 +0800</pubDate>
+      
+      <guid>http://yan-hui.github.io/blog/2018-10/test/</guid>
+      <description>这是测试</description>
+    </item>
+    
+    <item>
+      <title>搭建个人hugo网站</title>
+      <link>http://yan-hui.github.io/blog/2018-10/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhugo%E7%BD%91%E7%AB%99/</link>
+      <pubDate>Wed, 10 Oct 2018 17:11:55 +0800</pubDate>
+      
+      <guid>http://yan-hui.github.io/blog/2018-10/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhugo%E7%BD%91%E7%AB%99/</guid>
+      <description>1、前往https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 2、解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 3、配置完成之后，使用cmd或者其它命令行操作工具，输入hugo.exe查看是否有版</description>
+    </item>
+    
+  </channel>
+</rss>
