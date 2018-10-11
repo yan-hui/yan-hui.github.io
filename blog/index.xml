@@ -26,7 +26,7 @@
       <pubDate>Wed, 10 Oct 2018 17:11:55 +0800</pubDate>
       
       <guid>https://yan-hui.github.io/blog/2018-10/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhugo%E7%BD%91%E7%AB%99/</guid>
-      <description>1、前往https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 2、解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 3、配置完成之后，使用cmd或者其它命令行操作工具，输入hugo.exe查看是否有版</description>
+      <description>准备工作 前往hugo二进制文件下载 下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 配置完成之后，使用cmd或者其它命令行操作工具，输入hugo version查看是否有版本信息 创建博客 选择一个目录，使用命令行工具输入hugo new site</description>
     </item>
     
   </channel>

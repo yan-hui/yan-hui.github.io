@@ -7,10 +7,10 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
   <meta name="author" content="Orianna">
-  <meta name="description" content="1、前往https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 2、解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 3、配置完成之后，使用cmd或者其它命令行操作工具，输入hugo.exe查看是否有版">
+  <meta name="description" content="准备工作 前往hugo二进制文件下载 下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 配置完成之后，使用cmd或者其它命令行操作工具，输入hugo version查看是否有版本信息 创建博客 选择一个目录，使用命令行工具输入hugo new site">
   
   <meta property="og:title" content="搭建个人hugo网站" />
-<meta property="og:description" content="1、前往https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 2、解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 3、配置完成之后，使用cmd或者其它命令行操作工具，输入hugo.exe查看是否有版" />
+<meta property="og:description" content="准备工作 前往hugo二进制文件下载 下载对应的hugo二进制文件（hugo或者hugo.exe） 本人在windows下安装的hugo_0.24.1_Windows-64bit.zip 解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中 配置完成之后，使用cmd或者其它命令行操作工具，输入hugo version查看是否有版本信息 创建博客 选择一个目录，使用命令行工具输入hugo new site" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yan-hui.github.io/blog/2018-10/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BAhugo%E7%BD%91%E7%AB%99/" /><meta property="article:published_time" content="2018-10-10T17:11:55&#43;08:00"/>
 <meta property="article:modified_time" content="2018-10-10T17:11:55&#43;08:00"/>
@@ -296,7 +296,7 @@
 
     
       <li class="middot"></li>
-      <li>One minute read</li>
+      <li>3 minutes read</li>
     
   </ul>
   
@@ -305,10 +305,116 @@
 
 
           <div class="post-content markdown">
-            <p>1、前往<a href="https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe）">https://github.com/gohugoio/hugo/releases下载对应的hugo二进制文件（hugo或者hugo.exe）</a>
-   本人在windows下安装的hugo_0.24.1_Windows-64bit.zip
-2、解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中
-3、配置完成之后，使用cmd或者其它命令行操作工具，输入hugo.exe查看是否有版本信息</p>
+            <blockquote>
+<p><strong>准备工作</strong></p>
+
+<blockquote>
+<ol>
+<li><p>前往<a href="https://github.com/gohugoio/hugo/releases" title="Optional Title Here">hugo二进制文件下载</a>
+下载对应的hugo二进制文件（hugo或者hugo.exe）
+本人在windows下安装的hugo_0.24.1_Windows-64bit.zip</p></li>
+
+<li><p>解压到指定文件夹，将hugo.exe所在的目录的路径配置到环境变量path中</p></li>
+
+<li><p>配置完成之后，使用cmd或者其它命令行操作工具，输入hugo version查看是否有版本信息
+<center>
+<img src="https://yan-hui.github.io/createHogo/hugo-v.png" alt="hugo版本" title="hugo版本" />
+</center></p></li>
+</ol>
+</blockquote>
+
+<p><strong>创建博客</strong></p>
+
+<blockquote>
+<ol>
+<li>选择一个目录，使用命令行工具输入hugo new site blog，创建名文件夹名为 blog的网站：
+<center>
+<img src="https://yan-hui.github.io/createHogo/create-site.jpg" alt="创建网站" />
+<center/></li>
+</ol>
+
+<p>目录说明</p>
+</blockquote>
+</blockquote>
+
+<pre><code>|- archetypes ：存放default.md，头文件格式
+
+|- content ：content目录存放博客文章（.markdown/.md文件）
+
+|- data ：存放自定义模版，导入的toml文件（或json，yaml）
+
+|- layouts ：layouts目录存放的是网站的模板文件
+
+|- static ：static目录存放js/css/img等静态资源
+
+|- config.toml ：config.toml是网站的配置文件
+</code></pre>
+
+<blockquote>
+<blockquote>
+<ol>
+<li><p>使用hugo new about.md和hugo new blog/first.md 创建两个文章文件,他们分别存放在content和content/blog目录下
+<center>
+<img src="https://yan-hui.github.io/createHogo/create-md.jpg" alt="创建文章" />
+</center></p></li>
+
+<li><p>创建完成之后，需要下载主题来渲染显示网站，前往<a href="https://themes.gohugo.io">皮肤网站</a>选择自己喜欢的主题皮肤，以AllinOne为例</p></li>
+</ol>
+
+<blockquote>
+<ol>
+<li><p>进入到theme目录下，将主题clone下来
+<center>
+<img src="https://yan-hui.github.io/createHogo/theme.jpg" alt="主题" />
+<center>
+根据主题说明，将themes\AllinOne\exampleSite的config.toml拷贝到根目录下，覆盖该目录的config.toml文件</p></li>
+
+<li><p>使用hugo server &ndash;theme=AllinOne &ndash;buildDrafts &ndash;watch 启动，它会默认监听1313端口，如果被占用会分配别的端口
+&ndash;theme表示使用什么皮肤渲染你的网站，&ndash;watch则是会监听你的修改自动刷新浏览器
+<center>
+<img src="https://yan-hui.github.io/createHogo/startHogu.jpg" alt="启动" />
+</center>
+网站截图
+<center>
+<img src="https://yan-hui.github.io/createHogo/home.jpg" alt="主页" />
+</center></p></li>
+
+<li><p>修改根目录下的config.toml文件，指定访问地址
+<center>
+<img src="https://yan-hui.github.io/createHogo/configToml.jpg" alt="修改config" />
+</center>
+此时点击blog和about按钮就可以看见文章了
+<center>
+<img src="https://yan-hui.github.io/createHogo/blog.jpg" alt="blog" />
+</center></p></li>
+</ol>
+</blockquote>
+</blockquote>
+
+<p><strong>部署到GitHub</strong></p>
+
+<blockquote>
+<ol>
+<li><p>在github中创建一个仓库，取名为 你的用户名.github.io</p></li>
+
+<li><p>切到根目录 输入 hugo &ndash;theme=你的主题 &ndash;baseUrl=&ldquo;http://你的用户名.github.io/&rdquo; 别掉了最后那个斜杠/,否则样式会出不来
+（注意，以上命令并不会生成草稿页面，如果未生成任何文章，请去掉文章头部的 draft=true 再重新生成。）</p></li>
+
+<li><p>所有静态页面都会生成到 public 目录，将pubilc目录里所有文件 push 到刚创建的Repository的 master 分支（官方文档说明）</p>
+
+<pre><code>$ cd public
+$ git init
+$ git remote add origin https://github.com/coderzh/coderzh.github.io.git
+$ git add -A
+$ git commit -m &quot;first commit&quot;
+$ git push -u origin master
+</code></pre></li>
+
+<li><p>最后访问 <a href="https://xxx.github.io">https://xxx.github.io</a> ,https://后面的是你刚创建的那个仓库名字
+效果如下</p></li>
+</ol>
+</blockquote>
+</blockquote>
 
           </div>
 
