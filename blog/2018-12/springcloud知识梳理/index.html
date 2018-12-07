@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zn-Hans">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
+  <meta name="author" content="Orianna">
+  <meta name="description" content="1. 核心知识 网关、服务发现注册、配置中心、链路追踪、负载均衡、熔断 1. 网关：路由转发&#43;过滤器 比如： /api/v1/product/ 商品服务 /api/v1/order/ 订单服务 /api/v1/user/ 用户服务 根据不同的接口地址，分发到对应的服务 2. 注册服务与发现：调用和被调用方的信息维护 3. 配置中心：管理配置，动态更新 application.properties 4. 链路追踪：分析调用链路耗时 比如：下单-&gt;查询商品服务获取商品价格-&gt;查询用户信息-&gt;保存数据库 5. 负载均衡：分发负载 6. 熔断：保护自己和被调用方 2. CA">
+  
+  <meta property="og:title" content="Springcloud知识梳理" />
+<meta property="og:description" content="1. 核心知识 网关、服务发现注册、配置中心、链路追踪、负载均衡、熔断 1. 网关：路由转发&#43;过滤器 比如： /api/v1/product/ 商品服务 /api/v1/order/ 订单服务 /api/v1/user/ 用户服务 根据不同的接口地址，分发到对应的服务 2. 注册服务与发现：调用和被调用方的信息维护 3. 配置中心：管理配置，动态更新 application.properties 4. 链路追踪：分析调用链路耗时 比如：下单-&gt;查询商品服务获取商品价格-&gt;查询用户信息-&gt;保存数据库 5. 负载均衡：分发负载 6. 熔断：保护自己和被调用方 2. CA" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/yan-hui/yan-hui.github.io/blog/2018-12/springcloud%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" /><meta property="article:published_time" content="2018-12-05T14:32:43&#43;08:00"/>
+<meta property="article:modified_time" content="2018-12-05T14:32:43&#43;08:00"/>
+
+
+  <title>
+  
+       Springcloud知识梳理 | Orianna 
+  
+  </title>
+
+  <link rel="canonical" href="https://github.com/yan-hui/yan-hui.github.io/blog/2018-12/springcloud%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">
+
+  
+  
+
+  
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/vendors-extensions/fontawesome/all.min.css" rel="stylesheet">
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono:400,400i,700,700i|Raleway:300,400,500,600">
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/font.css" rel="stylesheet"> 
+    
+  
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/vendors/bootstrap4/bootstrap.min.css" rel="stylesheet">
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/vendors-extensions/mdb/mdb.min.css" rel="stylesheet"> 
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/vendors/mdb/style.min.css" rel="stylesheet"> 
+  <link href="https://github.com/yan-hui/yan-hui.github.io/css/main.css" rel="stylesheet">
+
+
+  
+  <link rel="shortcut icon"
+  
+      href="https://github.com/yan-hui/yan-hui.github.io/img/zheng.png"
+  
+  >
+
+
+  
+  
+
+  <style type="text/css">
+      @media (min-width: 800px) and (max-width: 850px) {
+              .navbar:not(.top-nav-collapse) {
+                  background: #1C2331!important;
+              }
+          }
+  </style>
+
+
+  
+    
+    <link rel="stylesheet" href="https://github.com/yan-hui/yan-hui.github.io/js/vendors/katex/katex.min.css">
+  
+  
+
+  
+    
+    <link rel="stylesheet" href="https://github.com/yan-hui/yan-hui.github.io/css/vendors/highlight/github-gist.css">
+  
+
+</head>
+
+  <body class="bg-light" data-spy="scroll" data-target="#page-scrollspy" data-offset="90">
+  
+    
+    
+
+    
+      
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      
+      <a class="navbar-brand" href="https://github.com/yan-hui/yan-hui.github.io/">
+          
+        <img class="avatar" src="https://github.com/yan-hui/yan-hui.github.io/img/zheng.png" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        
+        <strong> Orianna</strong>
+      </a>
+
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link" href="https://github.com/yan-hui/yan-hui.github.io/">Home</a>
+          </li>
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://github.com/yan-hui/yan-hui.github.io/blog/" >Blog  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://github.com/yan-hui/yan-hui.github.io/moment/" >Moment  </a>
+            </li>
+          
+             
+            <li class="nav-item ">
+              <a class="nav-link" href="https://github.com/yan-hui/yan-hui.github.io/about/" >About  </a>
+            </li>
+          
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  
+ 
+      
+ 
+
+
+
+
+
+
+<div id="site-header" class="carousel slide carousel-fade" data-ride="carousel" style="height: 18rem;" >  
+
+  
+  
+  
+
+  
+  <div class="carousel-inner" role="listbox">
+    
+      
+
+        
+        <div class="carousel-item active">
+          <div class="view" style="background-image: url('https://github.com/yan-hui/yan-hui.github.io/img/header-slides/raw_1515691746.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+              
+              
+              
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+      
+
+        
+        <div class="carousel-item">
+          <div class="view" style="background-image: url('https://github.com/yan-hui/yan-hui.github.io/img/header-slides//raw_1515847341.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+            
+            <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            
+
+            </div>
+            
+
+          </div>
+        </div>
+        
+      
+    
+
+  
+  </div>
+  
+
+  
+  <div class="carousel-content text-center white-text wow fadeIn">
+    <div class="row mx-0 headfont mt-3 pt-4">
+      
+      <div class="col-12 col-sm-5 align-middle">
+        <a href="https://github.com/yan-hui/yan-hui.github.io/">
+          
+            <img class="pull-right avatar avatar-md" src="https://github.com/yan-hui/yan-hui.github.io/img/profile.jpg" alt="" >
+          
+        </a>
+      </div>
+      
+      <div class="col-12 col-sm-7 text-left pl-2">
+        <a href="https://github.com/yan-hui/yan-hui.github.io/">
+          <h1 class="mb-2 h1" style="font-weight: 300;" >
+            <strong>Orianna</strong>
+          </h1>
+        </a>
+        
+
+             
+        <div class="mt-2" style="font-size: 1rem; color: white;">
+            
+              <a href="//github.com/you" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+            
+            
+              <a href="//linkedin.com/in/you" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
+            
+
+            
+              <a href="//facebook.com/you" target="_blank" rel="noopener"><i class="fab fa-facebook pr-1" aria-hidden="true"></i></a>
+            
+
+            
+            <a href="//google.com/you" target="_blank" rel="noopener"><i class="fab fa-google-plus pr-1" aria-hidden="true"></i></a>
+            
+
+            
+                <a href="//twitter.com/you" target="_blank" rel="noopener"><i class="fab fa-twitter pr-1" aria-hidden="true"></i></a>
+            
+
+            
+                <a href="//instagram.com/you" target="_blank" rel="noopener"><i class="fab fa-instagram pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+                <a href="//px500" target="_blank" rel="noopener"><i class="fab fa-500px pr-1" aria-hidden="true"></i></a>
+            
+    
+        
+            
+                <a href="mailto:you@email.com"><i class="far fa-envelope-open pr-1" aria-hidden="true"></i></a>
+            
+    
+            
+
+            
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
+  
+  
+
+</div>
+  
+    
+
+    
+  
+  <main class="post-main-wrapper">
+    
+    
+    <div class="row">
+
+      
+
+      
+      <div class="container pr-5">
+      
+
+        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
+
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
+
+  <div class="px-4 post-heading">Springcloud知识梳理</div>
+
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Dec 5, 2018</li>
+    
+
+    
+      <li class="middot"></li>
+      <li>5 minutes read</li>
+    
+  </ul>
+  
+
+</div>
+
+
+          <div class="post-content markdown">
+            
+
+<h3 id="1-核心知识-br">1. 核心知识</br></h3>
+
+<p><strong>网关、服务发现注册、配置中心、链路追踪、负载均衡、熔断</strong></br>
+1. 网关：路由转发+过滤器</br>
+比如： </br>
+        /api/v1/product/     商品服务</br>
+       /api/v1/order/       订单服务</br>
+       /api/v1/user/        用户服务</br>
+根据不同的接口地址，分发到对应的服务</br>
+2. 注册服务与发现：调用和被调用方的信息维护<br>
+3. 配置中心：管理配置，动态更新 application.properties
+4. 链路追踪：分析调用链路耗时<br>
+   比如：下单-&gt;查询商品服务获取商品价格-&gt;查询用户信息-&gt;保存数据库</br>
+5. 负载均衡：分发负载</br>
+6. 熔断：保护自己和被调用方</br></p>
+
+<h3 id="2-cap定理-br">2. CAP定理</br></h3>
+
+<p>指的是在一个分布式系统中，Consistency(一致性)、Availability(可用性)、Partitiontolerance（分区容错性）三者不可同时兼得</br>
+CAP理论就是说在分布式存储系统中，最多只能实现其中的两点，而由于当前网络硬件肯定会出现延迟丢包等问题，所以分区容错性是必须实现的，因此只能在一致性和可用性之间进行平衡。</br>
+1) <strong>一致性（C）</strong>：在分布式系统中的所有数据备份，在同一时刻 是否是同样的值。即所有的节点在同一时间的数据完全一致，越多节点，数据同步越耗时</br>
+2) <strong>可用性（A）</strong>:负载过大后，集群整体是否还能响应客户端的读写请求。即，服务一直可用，而且是正常的响应时间。</br>
+3) <strong>分区容错性（P）</strong>：分区容错性，就是搞可用性，一个节点崩了，并不影响其它节点。比如100个节点，挂了几个，不影响服务，越多机器越好。</br>
+4) <strong>CA满足情况下P不能满足的原因：</strong>数据提同步需要时间，也要正常的时间内响应，那么机器数量就要少，所以P不能满足。比如数据同步复制需要100ms,响应时间为2秒，则机器数量就不能太多</br>
+5) <strong>CP满足的情况下，A不满足的原因：</strong>数据同步需要时间，机器数量也多，但是同步数据需要时间，所以不能在正常的时间内响应，所以A不满足。比如，1000台机器，每台机器的同步复制时间为100ms，那么久不能在1s的时间内进行响应。</br>
+6) <strong>AP满足的情况下，C不满足的原因：</strong>机器数量多，正常的时间内响应，那么数据就不能及时同步到其它节点，所以C不满足。比如：1000台机器，响应时间为1s,同步一个节点时间为100ms，那么，如果需要在1s内响应，则数据无法及时同步到其他节点。</br></p>
+
+<h3 id="3-注册中心-br">3. 注册中心</br></h3>
+
+<p>注册中心就是服务管理，核心是有个服务注册表，通过心跳机制动态维护</br>
+<strong>服务提供者provider:</strong>启动的时候向注册中心上报自己的网络信息</br>
+<strong>服务消费者consumer:</strong>启动的时候向注册中心上报自己的网络信息，同时拉取provider的相关网络信息。</br>
+使用注册中心是因为微服务应用和机器越来越多，调用方需要知道接口的网络地址，如果单靠配置文件的方式去控制网络地址，对于动态新增机器和维护带来很大的问题</p>
+
+<h3 id="4-注册中心的选择-br">4. 注册中心的选择</br></h3>
+
+<p><strong>Zookeeper:</strong> CP设计，保证了一致性，集群搭建的时候，某个节点失败，则会进行选举行的leader,或者半数以上节点不可用，则无法提供服务，因此可用性没法满足</br>
+<strong>Eureka:</strong> AP原则，无主从节点，一个节点挂了，自动切换到其它可用节点就可以使用，去中心化</br>
+所以，如果要保持一致性，则选择zookeeper,如金融行业，如果要去可用性，则Eureka,如电商系统</br></p>
+
+<h3 id="5-eureka-br">5. Eureka</br></h3>
+
+<p><strong>Eureka2.0开始闭源</strong><br>
+1) 引入依赖：</br></p>
+
+<pre><code>&lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+&lt;/dependency&gt;
+
+</code></pre>
+
+<p>2) 启动类加入注解：<code>@EnableEurekaServer</code></p>
+
+<p>3) 配置文件加入如下配置，声明自己是服务端</p>
+
+<pre><code>server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #声明自己是个服务器
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: htpp://${eureka.instance.hostname}:${server.port}/eureka/
+</code></pre>
+
+<p>4) 服务方引入如下依赖、</p>
+
+<pre><code> &lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>并在服务方的配置文件中加入如下配置：</p>
+
+<pre><code>#注册到服务中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+#声明自己的服务名
+spring:
+  application:
+    name: product-service
+</code></pre>
+
+<h3 id="6-服务消费者ribbon和feign-br">6. 服务消费者ribbon和feign</br></h3>
+
+<ol>
+<li>Ribbon</br></li>
+</ol>
+
+<blockquote>
+<blockquote>
+<p>1) 在服务方加入依赖：</br></p>
+</blockquote>
+</blockquote>
+
+<pre><code>        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>2)在启动类或配置类中加入如下代码：</p>
+</blockquote>
+</blockquote>
+
+<pre><code>    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>3) 在服务层调用服务</p>
+</blockquote>
+</blockquote>
+
+<pre><code>    @Autowired
+    private RestTemplate restTemplate
+</code></pre>
+
+<p>使用<code>restTemplate.getForObject()</code>等方法进行服务接口调用,例如：</p>
+
+<pre><code>    restTemplate.getForObject(&quot;http://product-service/api/v1/product/find?id=&quot; + productId, Map.class)
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>4) 启动类新增的bean中，<code>@LoadBalanced</code> 的原理</p>
+
+<blockquote>
+<p>1) 首先从注册中心获取provider的列表</br>
+2) 通过一定的策略选择其中一个节点</br>
+3) 再返回给restTemplate调用</br></p>
+</blockquote>
+
+<p>5) Ribbon默认使用轮循的负载均衡策略，如果要修改策略则需要加入如下配置：</p>
+</blockquote>
+</blockquote>
+
+<pre><code>#自定义负载均衡策略
+        product-service:
+          ribbon:
+            NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+</code></pre>
+
+<p>其它策略可以查看<code>com.netflix.loadbalancer.IRule</code>的子类，</p>
+
+<blockquote>
+<blockquote>
+<p>策略选择<br>
+        1、如果每个机器配置一样，则建议不修改策略 (推荐)</br>
+        2、如果部分机器配置强，则可以改为 WeightedResponseTimeRule</p>
+</blockquote>
+</blockquote>
+
+<ol>
+<li>fegin</br></li>
+</ol>
+
+<blockquote>
+<blockquote>
+<p>1) 加入依赖</p>
+</blockquote>
+</blockquote>
+
+<pre><code>      &lt;dependency&gt;
+               &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+            &lt;/dependency&gt;
+</code></pre>
+
+<blockquote>
+<blockquote>
+<p>2) 启动类增加<code>@EnableFeignClients</code></p>
+
+<p>3) 增加一个接口 并加入注解<code>@FeignClient(name=&quot;服务名&quot;)</code>，例如：</br> <code>@FeignClient(name=&quot;product-service&quot;)</code>
+4) 直接注入该接口，用相关服务接口</p>
+</blockquote>
+</blockquote>
+
+<h3 id="7-服务降级熔断-br">7. 服务降级熔断</br></h3>
+
+<p>指系统负载过高，突发流量或者网络等各种异常情况，常用的解决方案</br>
+1. <strong>熔断：</strong><br>
+类似保险丝，熔断服务是为了防止整个系统崩溃，保护自己服务和下游服务,比如：<br>
+下单服务-&gt;商品服务-&gt;用户服务（出现异常-&gt;熔断）</br>
+2. <strong>降级：</strong></br>
+抛弃一些非核心的数据和接口,比如：</br>
+行李箱，只带核心的物品，抛弃非核心的，等有条件的时候再去携带这些物品</br>
+3. <strong>熔断和降级相互交集</strong></br>
+相同点：</br>
+  1) 从可用性和可靠性出发，为了防止系统崩溃</br>
+  2) 最终让用户体验到的是服务暂时不可用</br>
+不同点：熔断服务一般是下游服务故障导致的，而服务降级一般是从整体系统负荷考虑，由调用方控制 </br></p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
+            
+            </div>
+            
+          </div>
+          
+
+          
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://github.com/yan-hui/yan-hui.github.io/blog/2018-11/springboot2.1%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/ class="post-meta">Previous
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>SpringBoot2.1知识梳理</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
+      </div>
+      
+
+      
+
+    </div>
+    
+
+
+  </main>
+  
+
+
+    
+    
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+
+  
+  <div class="pb-2 mt-5 pt-5">
+    
+      <a href="//github.com/you " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+    
+    
+      <a href="//linkedin.com/in/you" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
+    
+
+    
+      <a href="//facebook.com/you" target="_blank" rel="noopener"><i class="fab fa-facebook-f mr-3" aria-hidden="true"></i></a>
+    
+
+    
+    <a href="//google.com/you" target="_blank" rel="noopener"><i class="fab fa-google-plus-g mr-3" aria-hidden="true"></i></a>
+    
+
+    
+        <a href="//twitter.com/you" target="_blank" rel="noopener"><i class="fab fa-twitter mr-3" aria-hidden="true"></i></a>
+    
+
+    
+        <a href="//instagram.com/you" target="_blank" rel="noopener"><i class="fab fa-instagram mr-3" aria-hidden="true"></i></a>
+    
+
+    
+        <a href="//px500" target="_blank" rel="noopener"><i class="fab fa-500px mr-3" aria-hidden="true"></i></a>
+    
+
+
+    
+        <a href="mailto:you@email.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
+    
+
+    
+
+    
+
+  </div>
+  
+
+  
+  <div class="copyright py-4">
+    
+    <span>  2016 - 2018 &copy; | Theme <a href='https://github.com/orianna-zzo/AllinOne' target="_blank">AllinOne</a> by <a href='https://github.com/orianna-zzo' target="_blank">Orianna</a>  </span>
+  </div>
+  
+
+</footer>
+
+
+    
+
+
+
+
+
+
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/jquery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/jquery/jquery.smooth-scroll.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/popper.min.js"></script>
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/holder.min.js"></script>
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors-extensions/bootstrap4/bootstrap.js" ></script>
+
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/mdb/mdb.min.js"></script>
+
+<script type="text/javascript" src="https://github.com/yan-hui/yan-hui.github.io/js/main.js"></script>
+
+
+
+  
+  <script src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/highlight.pack.js"> </script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+ 
+  <script src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/katex/katex.min.js"> </script>
+  <script src="https://github.com/yan-hui/yan-hui.github.io/js/vendors/katex/contrib/auto-render.min.js"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          renderMathInElement(document.body);
+      });
+  </script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  new WOW().init();
+</script>
+
+
+
+
+  </body>
+</html>

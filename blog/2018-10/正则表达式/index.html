@@ -7,21 +7,22 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1" />
   <meta name="author" content="Orianna">
-  <meta name="description" content="[Be myself. Love the wonderful world. Do the right things and be a better man.]">
+  <meta name="description" content="·正则语法 1. \ 将下一个字符标记为特殊字符、文本、反向引用或八进制转义符 2. ^ 匹配字符串开始的位置，即以什么开始 3. $ 匹配字符串结尾的位置，即以什么结尾 4. * 零次或多次匹配前面的字符或者子表达式，例如，zo*匹配z和zoo,*等于{0,} 5. &#43; 一次或多次匹配前面的字符或者子表达式，例如，zo&#43;与zo和zoo匹配，但是与z不匹配，&#43; 等效于{1,} 6. ? 零次或一次匹配前面的字符或者子表达式，例如，do(es)?匹">
   
-  <meta property="og:title" content="Series" />
-<meta property="og:description" content="[Be myself. Love the wonderful world. Do the right things and be a better man.]" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://github.com/yan-hui/yan-hui.github.io/series/" />
+  <meta property="og:title" content="正则表达式" />
+<meta property="og:description" content="·正则语法 1. \ 将下一个字符标记为特殊字符、文本、反向引用或八进制转义符 2. ^ 匹配字符串开始的位置，即以什么开始 3. $ 匹配字符串结尾的位置，即以什么结尾 4. * 零次或多次匹配前面的字符或者子表达式，例如，zo*匹配z和zoo,*等于{0,} 5. &#43; 一次或多次匹配前面的字符或者子表达式，例如，zo&#43;与zo和zoo匹配，但是与z不匹配，&#43; 等效于{1,} 6. ? 零次或一次匹配前面的字符或者子表达式，例如，do(es)?匹" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://github.com/yan-hui/yan-hui.github.io/blog/2018-10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><meta property="article:published_time" content="2018-10-31T10:36:23&#43;08:00"/>
+<meta property="article:modified_time" content="2018-10-31T10:36:23&#43;08:00"/>
 
 
   <title>
   
-       Series | Orianna 
+       正则表达式 | Orianna 
   
   </title>
 
-  <link rel="canonical" href="https://github.com/yan-hui/yan-hui.github.io/series/">
+  <link rel="canonical" href="https://github.com/yan-hui/yan-hui.github.io/blog/2018-10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
   
   
@@ -49,8 +50,6 @@
 
 
   
-  
-  <link href="https://github.com/yan-hui/yan-hui.github.io/series/index.xml" rel="alternate" type="application/rss+xml" title="Orianna" />
   
 
   <style type="text/css">
@@ -250,8 +249,6 @@
             
     
             
-                <a href="https://github.com/yan-hui/yan-hui.github.io/series/index.xml"><i class="fas fa-rss pr-1" aria-hidden="true"></i></a>
-            
 
             
         </div>
@@ -269,62 +266,137 @@
     
 
     
-  <main class="post-main-wrapper px-5">
+  
+  <main class="post-main-wrapper">
+    
     
     <div class="row">
+
       
-      <div class="col-md-3">
-        
-        
-        
 
-
-
-
-
+      
+      <div class="container pr-5">
+      
 
         
-        
+        <div class="z-depth-1  post-wrapper white-bg single-post">
 
+          <div class="post-header text-center" >
+  <ul class="post-meta li-x">
+    
+    
+  </ul>
 
+  <div class="px-4 post-heading">正则表达式</div>
 
+  <ul class="post-meta li-x mt-1">
+    
+      <li>Oct 31, 2018</li>
+    
 
-
-
-        
-
-
-
-
-
-
+    
+      <li class="middot"></li>
+      <li>4 minutes read</li>
+    
+  </ul>
   
 
-      </div>
-      
-
-      
-      
-      <div class="col-md-9 mt-3">  
-        <ul>
-          <div class='post-heading'>
-  
-      Series
-  
 </div>
 
-        
+
+          <div class="post-content markdown">
+            <p>·<strong>正则语法</strong></br></br>
+1. <code>\</code> 将下一个字符标记为特殊字符、文本、反向引用或八进制转义符</br></br>
+2. <code>^</code> 匹配字符串开始的位置，即以什么开始</br></br>
+3. <code>$</code> 匹配字符串结尾的位置，即以什么结尾</br></br>
+4. <code>*</code> 零次或多次匹配前面的字符或者子表达式，例如，<code>zo*</code>匹配<code>z</code>和<code>zoo</code>,<code>*</code>等于<code>{0,}</code></br></br>
+5. <code>+</code> 一次或多次匹配前面的字符或者子表达式，例如，<code>zo+</code>与<code>zo</code>和<code>zoo</code>匹配，但是与<code>z</code>不匹配，<code>+</code> 等效于<code>{1,}</code></br></br>
+6. <code>?</code> 零次或一次匹配前面的字符或者子表达式，例如，<code>do(es)?</code>匹配<code>do</code>和<code>does</code>中的<code>do</code>.<code>?</code>等效于<code>{0,1}</code></br></br>
+7. <code>{n}</code> n 是非负整数，正好匹配 n 次，例如，<code>o{2}</code>与<code>Bob</code>中的<code>o</code>不匹配，但与<code>food</code>中的两个<code>o</code>匹配</br></br>
+8. <code>{n,}</code> n 是非负整数，至少匹配 n 次，例如，<code>o{2,}</code>不匹配<code>bob</code>中的<code>o</code> ,而匹配<code>foooooot</code>中所有的<code>0</code>,<code>o{1,}</code>等效于<code>o+</code>,<code>o{0,}</code>等效于<code>o*</code></br></br>
+9. <code>{n,m}</code> m和n都是非负整数,其中 n&lt;m,至少匹配 n 次，最多匹配 m
+次，例如，<code>foooooot</code>中的头三个 o ,<code>o{0,1}</code>等效于<code>o?</code></br></br>
+10. <code>?</code> 次字符紧跟在任何其他限定符<code>(*、+、?、{n}、{n,}、{n,m})</code>之后,匹配模式是“非贪心的”。“非贪心的”模式匹配搜索到的、尽可能短的字符串,而默认的“贪心的”模式匹配搜索到的、尽可能长的字符串。例如，在字符串<code>oooo</code>中，<code>o+?</code>只匹配单个 o ,而 <code>o+</code>匹配所有的 o </br></br>
+11. <code>.</code> 匹配除<code>\r\n</code> 之外的任何单个字符，若要匹配包含 <code>\r\n</code> 在内的任意字符，需要使用诸如<code>[\s\S]</code>之类的模式</br></br>
+12. <code>(pattern)</code> 匹配 pattern 并捕获该匹配的子表达式,可以使用$0&hellip;$9属性从结果“匹配”集合中检索捕获的匹配。若要匹配括号字符<code>()</code>,需使用<code>\(</code>或者<code>\)</code>。</br></br>
+13. <code>(?:pattern)</code> 匹配 pattern 但不捕获该匹配的子表达式，即它是一个非捕获匹配，不存储供以后使用的匹配，这对于<code>or</code> 字符<code>(|)</code>组合模式部件的情况很有用，例如，<code>industr(?:y|ies)</code>比<code>industry|indeustries</code>更简洁的表达式</br></br>
+14. <code>(?=pattern)</code> 正向肯定预查，大概意思就是看后面的匹配，比如 <code>windows(?=98|2000)</code>匹配 <code>windows98</code>中的 windows ，但不比配 <code>windows</code>的windows,可查看csdn的一篇blog <a href="https://blog.csdn.net/shashagcsdn/article/details/80017678">https://blog.csdn.net/shashagcsdn/article/details/80017678</a>
+</br></br>
+15. <code>(?!pattern)</code> 非捕获匹配，正向否定预查，例如，<code>windows(?!98|2000)</code>,匹配<code>windows31</code>的windows，而不匹配<code>windows2000</code>的windows</br></br>
+16. <code>|</code> 或，比如<code>x|y</code>,即匹配 x 或 y,<code>(z|f)ood</code>匹配<code>zood</code>或<code>food</code></br></br>
+17. <code>[xyz]</code> 字符集，匹配包含的任一字符，例如，<code>[nm]</code> 匹配 <code>name</code>中的<code>n</code> <code>m</code> </br></br>
+18. <code>[^xyz]</code> 反字符集，即反向匹配包含的字符，例如 <code>[^nm]</code>匹配<code>name</code>中的<code>a</code> <code>e</code> </br></br>
+19. <code>[a-z]</code> 字符范围，例如<code>[a-z]</code>匹配 <code>a</code>到<code>z</code>范围内的所有小写字母</br></br>
+20. <code>[^a-z]</code> 反字符范围，即匹配所有不在 <code>a</code>到<code>z</code>范围内的任何字符</br></br>
+21. <code>\b</code> 匹配一个字边界，即字与空格之间的位置，例如，<code>er\b</code>匹配<code>ever</code>中的<code>er</code>,但不匹配<code>everb</code>中的<code>er</code></br></br>
+22. <code>\B</code> 非字边界匹配,例如，<code>er\b</code>匹配<code>everb</code>中的<code>er</code>,但不匹配<code>ever</code>中的<code>er</code></br></br>
+23. <code>\cx</code> 匹配由<code>x</code>指明的控制字符，例如，<code>\cM</code>匹配一个<code>Control-M</code>或回车键 <code>x</code>的范围必须为<code>a-z</code> <code>A-Z</code> 之一,否则将<code>c</code>认为一个原意的字符<code>c</code></br></br>
+24. <code>\d</code> 匹配数字，等效于<code>[0-9]</code></br></br>
+25. <code>\D</code> 非数字匹配，等效于<code>[^0-9]</code></br></br>
+26. <code>\f</code> 换页符匹配,等效于<code>\x0c</code> <code>\cL</code></br></br>
+27. <code>\n</code> 换行符匹配，等效于<code>\x0a</code> <code>\cJ</code></br></br>
+28. <code>\r</code> 回车符匹配，等效于<code>\x0d</code> <code>\cM</code></br></br>
+29. <code>\s</code> 匹配任何不可见字符，包括空格符、制表符、换页符等等，等效于<code>[\f\n\r\t\v]</code></br></br>
+30. <code>\S</code> 匹配任何可见字符，等效于<code>[^\f\n\r\t\v]</code></br></br>
+31. <code>\t</code> 制表符匹配，等效于<code>\x09</code> <code>\cI</code></br></br>
+32. <code>\v</code> 垂直制表符匹配，等效禹<code>\x0b</code> <code>\cK</code></br></br>
+33. <code>\w</code> 匹配任何包括下划线的单词字符，类似但不等价与<code>[A-Za-z0-9]</code>,“单词”使用的是Unicode字符集</br></br>
+34. <code>\W</code> 匹配任何非单词字符，等价于<code>[^A-Za-z0-9]</code></br></br>
+35. <code>\xn</code></p>
+
+          </div>
+
+          
+          <div class="row">
+            <div class="col-md-8">
             
-        </ul>
-        <ul>
+            </div>
+            
+          </div>
           
+
           
-        </ul>
+          <div class="row pt-3">
+            <div class="col-md-6">
+              
+                <a href=https://github.com/yan-hui/yan-hui.github.io/blog/2018-10/redis/ class="post-meta">Previous
+                  <div class="pt-2 pb-5 d-flex">
+                    <i class="fas fa-angle-left text-grey font-weight-bold mr-2 active-color"></i>
+                    <span>Redis</span>
+                  </div>
+                </a>
+              
+            </div>
+            
+            <div class="col-md-6 text-right" >
+              
+                <a href=https://github.com/yan-hui/yan-hui.github.io/blog/2018-11/springboot2.1%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/ class="post-meta">Next
+                  <div class="pt-2 pb-5 flex-reverse">
+                    <i class="fas fa-angle-right text-grey font-weight-bold ml-2 active-color"></i>
+                    <span>SpringBoot2.1知识梳理</span>
+                  </div>
+                </a>
+              
+            </div>
+          </div>
+
+          
+
+        </div>
+        
+
       </div>
       
+
       
+
     </div>
+    
+
+
   </main>
+  
+
 
     
     
@@ -366,8 +438,6 @@
         <a href="mailto:you@email.com"><i class="far fa-envelope-open mr-3" aria-hidden="true"></i></a>
     
 
-    
-        <a href="https://github.com/yan-hui/yan-hui.github.io/series/index.xml"><i class="fas fa-rss mr-3" aria-hidden="true"></i></a>
     
 
     
