@@ -44,7 +44,7 @@
   
   <link rel="shortcut icon"
   
-      href="https://yan-hui.github.io/img/zheng.png"
+      href="https://yan-hui.github.io/img/logo.jpeg"
   
   >
 
@@ -89,7 +89,7 @@
       
       <a class="navbar-brand" href="https://yan-hui.github.io/">
           
-        <img class="avatar" src="https://yan-hui.github.io/img/zheng.png" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
+        <img class="avatar" src="https://yan-hui.github.io/img/logo.jpeg" style="width: 40px!important;height: auto;"  class="d-inline-block align-top" alt="" >
         
         <strong> Orianna</strong>
       </a>
@@ -201,7 +201,7 @@
       <div class="col-12 col-sm-5 align-middle">
         <a href="https://yan-hui.github.io/">
           
-            <img class="pull-right avatar avatar-md" src="https://yan-hui.github.io/img/profile.jpg" alt="" >
+            <img class="pull-right avatar avatar-md" src="https://yan-hui.github.io/img/author.jpeg" alt="" >
           
         </a>
       </div>
@@ -217,7 +217,7 @@
              
         <div class="mt-2" style="font-size: 1rem; color: white;">
             
-              <a href="//github.com/you" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
+              <a href="//github.com/yan-hui" target="_blank" rel="noopener"><i class="fab fa-github pr-1" aria-hidden="true"></i></a>    
             
             
               <a href="//linkedin.com/in/you" target="_blank" rel="noopener"><i class="fab fa-linkedin pr-1" aria-hidden="true"></i></a>
@@ -296,7 +296,7 @@
 
     
       <li class="middot"></li>
-      <li>5 minutes read</li>
+      <li>6 minutes read</li>
     
   </ul>
   
@@ -326,13 +326,18 @@
 <h3 id="2-cap定理-br">2. CAP定理</br></h3>
 
 <p>指的是在一个分布式系统中，Consistency(一致性)、Availability(可用性)、Partitiontolerance（分区容错性）三者不可同时兼得</br>
-CAP理论就是说在分布式存储系统中，最多只能实现其中的两点，而由于当前网络硬件肯定会出现延迟丢包等问题，所以分区容错性是必须实现的，因此只能在一致性和可用性之间进行平衡。</br>
-1) <strong>一致性（C）</strong>：在分布式系统中的所有数据备份，在同一时刻 是否是同样的值。即所有的节点在同一时间的数据完全一致，越多节点，数据同步越耗时</br>
-2) <strong>可用性（A）</strong>:负载过大后，集群整体是否还能响应客户端的读写请求。即，服务一直可用，而且是正常的响应时间。</br>
-3) <strong>分区容错性（P）</strong>：分区容错性，就是搞可用性，一个节点崩了，并不影响其它节点。比如100个节点，挂了几个，不影响服务，越多机器越好。</br>
-4) <strong>CA满足情况下P不能满足的原因：</strong>数据提同步需要时间，也要正常的时间内响应，那么机器数量就要少，所以P不能满足。比如数据同步复制需要100ms,响应时间为2秒，则机器数量就不能太多</br>
-5) <strong>CP满足的情况下，A不满足的原因：</strong>数据同步需要时间，机器数量也多，但是同步数据需要时间，所以不能在正常的时间内响应，所以A不满足。比如，1000台机器，每台机器的同步复制时间为100ms，那么久不能在1s的时间内进行响应。</br>
-6) <strong>AP满足的情况下，C不满足的原因：</strong>机器数量多，正常的时间内响应，那么数据就不能及时同步到其它节点，所以C不满足。比如：1000台机器，响应时间为1s,同步一个节点时间为100ms，那么，如果需要在1s内响应，则数据无法及时同步到其他节点。</br></p>
+CAP理论就是说在分布式存储系统中，最多只能实现其中的两点，而由于当前网络硬件肯定会出现延迟丢包等问题，所以分区容错性是必须实现的，因此只能在一致性和可用性之间进行平衡。</br></p>
+
+<blockquote>
+<ol>
+<li><strong>一致性（C）</strong>：在分布式系统中的所有数据备份，在同一时刻 是否是同样的值。即所有的节点在同一时间的数据完全一致，越多节点，数据同步越耗时</br></li>
+<li><strong>可用性（A）</strong>:负载过大后，集群整体是否还能响应客户端的读写请求。即，服务一直可用，而且是正常的响应时间。</br></li>
+<li><strong>分区容错性（P）</strong>：分区容错性，就是搞可用性，一个节点崩了，并不影响其它节点。比如100个节点，挂了几个，不影响服务，越多机器越好。</br></li>
+<li><strong>CA满足情况下P不能满足的原因：</strong>数据提同步需要时间，也要正常的时间内响应，那么机器数量就要少，所以P不能满足。比如数据同步复制需要100ms,响应时间为2秒，则机器数量就不能太多</br></li>
+<li><strong>CP满足的情况下，A不满足的原因：</strong>数据同步需要时间，机器数量也多，但是同步数据需要时间，所以不能在正常的时间内响应，所以A不满足。比如，1000台机器，每台机器的同步复制时间为100ms，那么久不能在1s的时间内进行响应。</br></li>
+<li><strong>AP满足的情况下，C不满足的原因：</strong>机器数量多，正常的时间内响应，那么数据就不能及时同步到其它节点，所以C不满足。比如：1000台机器，响应时间为1s,同步一个节点时间为100ms，那么，如果需要在1s内响应，则数据无法及时同步到其他节点。</br></li>
+</ol>
+</blockquote>
 
 <h3 id="3-注册中心-br">3. 注册中心</br></h3>
 
@@ -349,8 +354,11 @@ CAP理论就是说在分布式存储系统中，最多只能实现其中的两�
 
 <h3 id="5-eureka-br">5. Eureka</br></h3>
 
-<p><strong>Eureka2.0开始闭源</strong><br>
-1) 引入依赖：</br></p>
+<p><strong>Eureka2.0开始闭源</strong><br></p>
+
+<blockquote>
+<p>1.引入依赖:</p>
+</blockquote>
 
 <pre><code>&lt;dependency&gt;
         &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
@@ -359,9 +367,9 @@ CAP理论就是说在分布式存储系统中，最多只能实现其中的两�
 
 </code></pre>
 
-<p>2) 启动类加入注解：<code>@EnableEurekaServer</code></p>
-
-<p>3) 配置文件加入如下配置，声明自己是服务端</p>
+<blockquote>
+<p>2.启动类加入注解：@EnableEurekaServer`</br>
+3.配置文件加入如下配置，声明自己是服务端</p>
 
 <pre><code>server:
   port: 8761
@@ -376,7 +384,8 @@ eureka:
       defaultZone: htpp://${eureka.instance.hostname}:${server.port}/eureka/
 </code></pre>
 
-<p>4) 服务方引入如下依赖、</p>
+<p>4.服务方引入如下依赖</p>
+</blockquote>
 
 <pre><code> &lt;dependency&gt;
     &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
@@ -405,7 +414,7 @@ spring:
 
 <blockquote>
 <blockquote>
-<p>1) 在服务方加入依赖：</br></p>
+<p>1.在服务方加入依赖：</br></p>
 </blockquote>
 </blockquote>
 
@@ -421,7 +430,7 @@ spring:
 
 <blockquote>
 <blockquote>
-<p>2)在启动类或配置类中加入如下代码：</p>
+<p>2.在启动类或配置类中加入如下代码：</p>
 </blockquote>
 </blockquote>
 
@@ -434,7 +443,7 @@ spring:
 
 <blockquote>
 <blockquote>
-<p>3) 在服务层调用服务</p>
+<p>3.在服务层调用服务</p>
 </blockquote>
 </blockquote>
 
@@ -449,15 +458,15 @@ spring:
 
 <blockquote>
 <blockquote>
-<p>4) 启动类新增的bean中，<code>@LoadBalanced</code> 的原理</p>
+<p>4.启动类新增的bean中，<code>@LoadBalanced</code> 的原理</p>
 
 <blockquote>
-<p>1) 首先从注册中心获取provider的列表</br>
-2) 通过一定的策略选择其中一个节点</br>
-3) 再返回给restTemplate调用</br></p>
+<p>1.首先从注册中心获取provider的列表</br>
+2.通过一定的策略选择其中一个节点</br>
+3.再返回给restTemplate调用</br></p>
 </blockquote>
 
-<p>5) Ribbon默认使用轮循的负载均衡策略，如果要修改策略则需要加入如下配置：</p>
+<p>5.Ribbon默认使用轮循的负载均衡策略，如果要修改策略则需要加入如下配置：</p>
 </blockquote>
 </blockquote>
 
@@ -483,22 +492,21 @@ spring:
 
 <blockquote>
 <blockquote>
-<p>1) 加入依赖</p>
-</blockquote>
-</blockquote>
+<ol>
+<li>加入依赖
+<code>
+  &lt;dependency&gt;
+           &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+</code></li>
 
-<pre><code>      &lt;dependency&gt;
-               &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-                &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;
-            &lt;/dependency&gt;
-</code></pre>
+<li><p>启动类增加<code>@EnableFeignClients</code></p></li>
 
-<blockquote>
-<blockquote>
-<p>2) 启动类增加<code>@EnableFeignClients</code></p>
+<li><p>增加一个接口 并加入注解<code>@FeignClient(name=&quot;服务名&quot;)</code>，例如：</br> <code>@FeignClient(name=&quot;product-service&quot;)</code></p></li>
 
-<p>3) 增加一个接口 并加入注解<code>@FeignClient(name=&quot;服务名&quot;)</code>，例如：</br> <code>@FeignClient(name=&quot;product-service&quot;)</code>
-4) 直接注入该接口，用相关服务接口</p>
+<li><p>直接注入该接口，用相关服务接口</p></li>
+</ol>
 </blockquote>
 </blockquote>
 
@@ -516,6 +524,93 @@ spring:
   1) 从可用性和可靠性出发，为了防止系统崩溃</br>
   2) 最终让用户体验到的是服务暂时不可用</br>
 不同点：熔断服务一般是下游服务故障导致的，而服务降级一般是从整体系统负荷考虑，由调用方控制 </br></p>
+
+<h3 id="8-hystrix断路器">8. Hystrix断路器</h3>
+
+<blockquote>
+<p>1.加入hystrix依赖</p>
+</blockquote>
+
+<pre><code> &lt;!--hystrix断路器--&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+</code></pre>
+
+<blockquote>
+<p>2.启动类加入 <code>@EnableCircuitBreaker</code>注解</br>
+3.在api方法上加入注解`@HystrixCommand，降级的方法一定要和api的一致，例如：</p>
+</blockquote>
+
+<pre><code> @RequestMapping(&quot;save&quot;)
+    @HystrixCommand(fallbackMethod = &quot;saveOrderFail&quot;)
+    public JsonResult save(@RequestParam(&quot;user_id&quot;) Long userId,@RequestParam(&quot;product_id&quot;) Long productId){
+        ProductOrder order = productOrderService.save(userId, productId);
+        return JsonResult.success(order);
+    }
+    private JsonResult saveOrderFail(Long userId,Long productId){
+        return JsonResult.fail(-1,null,&quot;当前访问人数过多，请稍后尝试&quot;);
+    }
+</code></pre>
+
+<blockquote>
+<p>4.fegin结合Hystrix，需要在<code>@FeignClient</code>注解的方法中，加入<code>fallback</code>属性,fallback调用的类，需要实现fegin所在类的接口,并标记为<code>@Component</code>，例如：</p>
+</blockquote>
+
+<pre><code>@FeignClient(name = &quot;product-service&quot;,fallback = ProductClientFailBack.class)
+public interface ProductClient {}
+
+@Component
+public class ProductClientFailBack implements ProductClient {
+    @Override
+    public String fingById(Long id) {
+        System.out.println(&quot;fegin 调用product-service fingById 异常&quot;);
+        return null;
+    }
+}
+
+
+</code></pre>
+
+<p>由于2.0.3的fegin默认关闭了hystrix，所以需要在配置中开启：</p>
+
+<pre><code>feign:
+  #2.0.3的fegin默认是关闭hystrix
+  hystrix:
+    enabled: true
+</code></pre>
+
+<h3 id="9-zuul网关">9. zuul网关</h3>
+
+<blockquote>
+<p>1.引入zuul依赖</p>
+</blockquote>
+
+<pre><code>    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-starter-netflix-zuul&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+</code></pre>
+
+<blockquote>
+<p>2.启动类加入注解<code>@EnableZuulProxy</code></br>
+3.配置需要加入网关过滤的服务,服务的代替地址不能一样，否则后者会覆盖前者，产生前者服务接口404，由于routes将部分请求头过滤掉了，如果需要往下游服务传递请求头，需要加入<code>sensitive-headers:</code>配置：</p>
+</blockquote>
+
+<pre><code>#名称如果一样会覆盖前者
+zuul:
+  routes:
+    order-service: /apigateway/order/**
+    product-service: /apigateway/product/**
+  #处理请求头为空的问题
+  sensitive-headers:
+ #统一入口为上面的配置，其他入口忽略
+ #ignored-patterns: /*-service/**
+ #忽略整个服务，对外提供接口
+ #ignored-services: product-service
+</code></pre>
 
           </div>
 
@@ -573,7 +668,7 @@ spring:
   
   <div class="pb-2 mt-5 pt-5">
     
-      <a href="//github.com/you " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
+      <a href="//github.com/yan-hui " target="_blank" rel="noopener"><i class="fab fa-github mr-3" aria-hidden="true"></i></a>    
     
     
       <a href="//linkedin.com/in/you" target="_blank" rel="noopener"><i class="fab fa-linkedin-in mr-3" aria-hidden="true"></i></a>
